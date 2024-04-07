@@ -1,2 +1,5 @@
-package CoffeeShopApp.models.enums;public class CategoryNameEnum {
+package CoffeeShopApp.models.enums;
+
+public enum CategoryNameEnum {
+    COFFEE, CAKE, DRINK, OTHER
 }
