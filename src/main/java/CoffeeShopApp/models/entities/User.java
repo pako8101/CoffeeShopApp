@@ -1,8 +1,9 @@
 package CoffeeShopApp.models.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.Set;
+
 @Entity
 @Table(name = "users")
 public class User extends BaseEntity{
@@ -17,8 +18,18 @@ public class User extends BaseEntity{
     private String email;
     @Column(nullable = false)
     private String password;
+    @OneToMany(mappedBy = "employee",fetch = FetchType.EAGER)
+    private Set<Order>orders;
 
     public User() {
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
     }
 
     public String getUsername() {

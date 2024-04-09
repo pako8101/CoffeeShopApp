@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import CoffeeShopApp.util.CurrentUser;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -59,6 +60,14 @@ private final CurrentUser currentUser;
 
     @Override
     public List<UserViewModel> findAllUsersAndCountOfOrdersOrderByCountDesc() {
-        return null;
+        return userRepository.findAllByOrdersCountDesc()
+                .stream()
+                .map(user -> {
+                    UserViewModel userViewModel = new UserViewModel();
+                    userViewModel.setUsername(user.getUsername());
+                    userViewModel.setCountOfOrders(user.getOrders().size());
+                    return userViewModel;
+                }).collect(Collectors.toList());
+
     }
 }

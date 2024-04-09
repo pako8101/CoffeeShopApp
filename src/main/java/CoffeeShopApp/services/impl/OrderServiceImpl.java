@@ -51,4 +51,9 @@ orderRepository.saveAndFlush(order);
                         .map(order, OrderViewModel.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void readyOrder(Long id) {
+        orderRepository.deleteById(id);
+    }
 }
